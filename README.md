@@ -5,10 +5,6 @@ y YARN), **MapReduce**, **Spark** (core, SQL, rendimiento, Structured Streaming 
 mismo caso real: la **medición inteligente (AMI) de una distribuidora de energía**. Son 1.000 medidores que reportan
 cada 15 minutos durante septiembre de 2026, con 2,88 millones de lecturas, cortes, fraudes y medidores dañados.
 
-Sigue el formato de [mongodb-replication-architecture](https://github.com/astorress/mongodb-replication-architecture)
-y [postgresql-replication-architecture](https://github.com/astorress/postgresql-replication-architecture): un clúster
-real en Docker, lecciones numeradas que se ejecutan en orden y un notebook para experimentar.
-
 ![Arquitectura de la plataforma](docs/architecture.png)
 
 > Diagrama editable: [`docs/architecture.drawio`](docs/architecture.drawio).
