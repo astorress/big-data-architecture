@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- YARN: un ResourceManager (master) y dos NodeManagers (worker1, worker2), cada uno con 2 GB y 2 núcleos. -->
+<configuration>
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>master</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.bind-host</name>
+    <value>0.0.0.0</value>
+  </property>
+  <!-- Recursos que cada NodeManager ofrece para contenedores (no es la memoria real del nodo) -->
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>2048</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value>2</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>128</value>
+  </property>
+  <property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>2048</value>
+  </property>
+  <!-- La memoria virtual de la JVM es mucho mayor que la física: no matar contenedores por eso -->
+  <property>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+  </property>
+  <!-- Docker Desktop suele tener el disco por encima del 90 % (el límite por defecto): el nodo no se marca enfermo -->
+  <property>
+    <name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name>
+    <value>99</value>
+  </property>
+  <!-- Servicio auxiliar que sirve la salida de los map a los reduce (el shuffle de MapReduce) -->
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.env-whitelist</name>
+    <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME</value>
+  </property>
+  <!-- Al terminar una aplicación, sus logs se copian a HDFS: yarn logs -applicationId <id> -->
+  <property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+  </property>
+</configuration>

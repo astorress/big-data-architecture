@@ -1,0 +1,10 @@
+pyspark==4.2.0
+numpy==2.5.3
+pandas==2.3.3
+pyarrow==26.0.0
+confluent-kafka==2.16.0
+requests==2.34.2
+# notebooks/sandbox.ipynb
+jupyterlab==4.6.4
+ipykernel==7.4.0
+matplotlib==3.11.2

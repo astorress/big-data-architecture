@@ -1,0 +1,36 @@
+{
+  "name": "big-data-architecture",
+  "dockerComposeFile": [".docker/docker-compose.yml", ".docker/hadoop.yml", ".docker/kafka.yml"],
+  "service": "big_data_lab",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "eeyore.yapf",
+        "irongeek.vscode-env",
+        "ms-azuretools.vscode-docker",
+        "ms-python.isort",
+        "ms-python.pylint",
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "yzhang.markdown-all-in-one"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "pylint.interpreter": ["/usr/local/bin/python"],
+        "yapf.interpreter": ["/usr/local/bin/python"],
+        "[python]": {
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          },
+          "editor.defaultFormatter": "eeyore.yapf"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "chmod +x .docker/entrypoint.sh && .docker/entrypoint.sh"
+}

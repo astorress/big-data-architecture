@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuración común a HDFS, YARN, MapReduce y a los clientes (Spark, CLI hdfs). -->
+<configuration>
+  <!-- Sistema de archivos por defecto: una ruta como /datalake/raw se resuelve contra el NameNode -->
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://master:8020</value>
+  </property>
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>/data/tmp</value>
+  </property>
+  <!-- Usuario con el que la interfaz web (puerto 9870) navega y borra archivos -->
+  <property>
+    <name>hadoop.http.staticuser.user</name>
+    <value>bigdata</value>
+  </property>
+</configuration>

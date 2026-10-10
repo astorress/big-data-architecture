@@ -1,0 +1,51 @@
+# Clúster Hadoop: un maestro y dos trabajadores.
+#   master  -> NameNode (metadatos de HDFS) + ResourceManager (YARN) + JobHistory (MapReduce)
+#   worker1 -> DataNode (bloques de HDFS) + NodeManager (contenedores de YARN)
+#   worker2 -> DataNode + NodeManager
+# Las interfaces web del maestro se publican en el host: HDFS en 9870, YARN en 8088 y JobHistory en 19888.
+
+x-hadoop: &hadoop
+  image: big-data-architecture-hadoop
+  build:
+    context: ..
+    dockerfile: .docker/Dockerfile
+    target: img-base
+  restart: unless-stopped
+
+services:
+
+  master:
+    <<: *hadoop
+    container_name: 'BigDataMaster'
+    hostname: master
+    entrypoint: ["bash", "/hadoop/master.sh"]
+    ports:
+      - 9870:9870     # HDFS (NameNode)
+      - 8088:8088     # YARN (ResourceManager)
+      - 19888:19888   # JobHistory de MapReduce
+    volumes:
+      - ./hadoop:/hadoop:ro
+      - master-data:/data
+  worker1:
+    <<: *hadoop
+    container_name: 'BigDataWorker1'
+    hostname: worker1
+    entrypoint: ["bash", "/hadoop/worker.sh"]
+    volumes:
+      - ./hadoop:/hadoop:ro
+      - worker1-data:/data
+    depends_on: [master]
+  worker2:
+    <<: *hadoop
+    container_name: 'BigDataWorker2'
+    hostname: worker2
+    entrypoint: ["bash", "/hadoop/worker.sh"]
+    volumes:
+      - ./hadoop:/hadoop:ro
+      - worker2-data:/data
+    depends_on: [master]
+
+volumes:
+  master-data:
+  worker1-data:
+  worker2-data:

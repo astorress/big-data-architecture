@@ -1,0 +1,29 @@
+name: big-data-architecture
+
+services:
+
+  big_data_lab:
+    container_name: 'BigDataLab'
+    hostname: lab   # los ejecutores de Spark se conectan de vuelta al driver por este nombre
+    build:
+      context: ..
+      dockerfile: .docker/Dockerfile
+      target: img-lab
+    volumes:
+      - ..:/app
+      - ./hadoop:/hadoop:ro
+      - big-data-bashhistory:/commandhistory
+    env_file:
+      - ../.envs/lab.env
+    ports:
+      - 4040:4040   # Spark UI del driver
+      - 8890:8890   # JupyterLab (8888 y 8889 los usan los laboratorios de MongoDB y PostgreSQL)
+    working_dir: /app
+    restart: unless-stopped
+    command:
+      - /bin/sh
+      - -c
+      - sleep infinity
+
+volumes:
+  big-data-bashhistory:

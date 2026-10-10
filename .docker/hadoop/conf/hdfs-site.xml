@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HDFS: un NameNode (master) y dos DataNodes (worker1, worker2). -->
+<configuration>
+  <property>
+    <name>dfs.namenode.name.dir</name>
+    <value>file:///data/namenode</value>
+  </property>
+  <property>
+    <name>dfs.datanode.data.dir</name>
+    <value>file:///data/datanode</value>
+  </property>
+  <!-- Copias de cada bloque. Con dos DataNodes, cada bloque vive en los dos -->
+  <property>
+    <name>dfs.replication</name>
+    <value>2</value>
+  </property>
+  <!-- Tamaño de bloque por defecto (el de Hadoop). La lección 01 sube un archivo con bloques de 1 MB -->
+  <property>
+    <name>dfs.blocksize</name>
+    <value>128m</value>
+  </property>
+  <!-- Escuchar en todas las interfaces para publicar los puertos en el host -->
+  <property>
+    <name>dfs.namenode.rpc-bind-host</name>
+    <value>0.0.0.0</value>
+  </property>
+  <property>
+    <name>dfs.namenode.http-bind-host</name>
+    <value>0.0.0.0</value>
+  </property>
+  <property>
+    <name>dfs.namenode.datanode.registration.ip-hostname-check</name>
+    <value>false</value>
+  </property>
+  <!-- Un DataNode se declara muerto tras 2 x 30 s + 10 x 3 s = 90 s sin latidos (por defecto, 10,5 minutos) -->
+  <property>
+    <name>dfs.namenode.heartbeat.recheck-interval</name>
+    <value>30000</value>
+  </property>
+  <!-- Al arrancar, salir del modo seguro 5 s después de recibir los reportes de bloques (por defecto, 30 s) -->
+  <property>
+    <name>dfs.namenode.safemode.extension</name>
+    <value>5000</value>
+  </property>
+</configuration>

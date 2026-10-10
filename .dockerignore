@@ -1,0 +1,3 @@
+# El contexto de la imagen solo necesita requirements.txt
+*
+!requirements.txt
