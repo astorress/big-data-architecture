@@ -237,7 +237,7 @@ Asigna **al menos 10 GB de memoria a Docker** (Docker Desktop → Settings → R
 unos 5 GB en reposo y VS Code dentro del contenedor otro 1,5 GB. Cuando Spark lanza su driver y sus ejecutores, con
 8 GB o menos la máquina virtual de Docker se queda sin memoria y el kernel mata procesos Java (OOM): una lección falla
 con `Py4JNetworkError` o `Connection refused`. El `entrypoint.sh` avisa si Docker tiene menos de 9 GB. Si tienes
-corriendo los laboratorios de MongoDB o PostgreSQL, detenlos antes.
+otros contenedores pesados corriendo, detenlos antes.
 
 **Con VS Code**: `Dev Containers: Reopen in Container`.
 
@@ -317,8 +317,7 @@ Las celdas marcadas **Juega aquí** están hechas para cambiarlas. Necesita las 
 de abrirlo:
 
 - **VS Code (Dev Container)**: abre el archivo y elige el kernel de Python 3.13 del contenedor.
-- **Navegador (JupyterLab)**: el contenedor publica el puerto 8890 (8888 y 8889 los usan los laboratorios de
-  MongoDB y PostgreSQL).
+- **Navegador (JupyterLab)**: el contenedor publica el puerto 8890.
 
   ```bash
   docker exec -it BigDataLab jupyter lab --ip 0.0.0.0 --port 8890 --no-browser --notebook-dir /app
