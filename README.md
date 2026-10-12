@@ -5,9 +5,15 @@ y YARN), **MapReduce**, **Spark** (core, SQL, rendimiento, Structured Streaming 
 mismo caso real: la **medición inteligente (AMI) de una distribuidora de energía**. Son 1.000 medidores que reportan
 cada 15 minutos durante septiembre de 2026, con 2,88 millones de lecturas, cortes, fraudes y medidores dañados.
 
-![Arquitectura de la plataforma](docs/architecture.png)
+### Procesamiento batch
 
-> Diagrama editable: [`docs/architecture.drawio`](docs/architecture.drawio).
+![Arquitectura de procesamiento batch](docs/architecture.png)
+
+### Streaming y machine learning en tiempo real
+
+![Arquitectura de streaming y machine learning](docs/architecture-streaming.png)
+
+Diagramas editables: [`docs/architecture.drawio`](docs/architecture.drawio).
 
 ## 1. Conceptos de big data
 
